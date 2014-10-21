@@ -1,0 +1,25 @@
+{
+  "name": "devconf-calendar",
+  "version": "1.0.0",
+  "description": "HTML5DevConf Calendar in JSON format via Amalgamatic",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Trott/devconf-calendar"
+  },
+  "author": "Rich Trott <rtrott@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Trott/devconf-calendar/issues"
+  },
+  "homepage": "https://github.com/Trott/devconf-calendar",
+  "dependencies": {
+    "amalgamatic": "^6.0.2",
+    "amalgamatic-h5dcsched": "^1.0.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.5.6"
+  }
+}
