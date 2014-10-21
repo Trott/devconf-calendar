@@ -1,3 +1,8 @@
+// polyfill non-standard trimLeft() for IE
+String.prototype.trimLeft = String.prototype.trimLeft || function () {
+    return String(this).replace(/^\s+/, '');
+};
+
 var amalgamatic = require('amalgamatic');
 
 var sched = require('amalgamatic-h5dcsched');
