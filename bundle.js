@@ -44,8 +44,10 @@ amalgamatic.search({pluginCallback: pluginCallback});
 var cheerio = require('cheerio');
 var http = require('http');
 var url = require('url');
-var moment = require('moment');
 var extend = require('util-extend');
+var moment = require('moment');
+
+var timeOffset = '-0700';  // Offset of conference timezone for human-readable timestamps/easier testing.
 
 var options = {
     url: 'http://html5devconf.com/schedule.html'
@@ -102,8 +104,8 @@ exports.search = function (query, callback) {
                 var times = $(this).parent().parent().children().first().text();
                 var startTime = times.substring(0,times.indexOf(' '));
                 var endTime = times.substring(times.indexOf('-')+2);
-                var start = moment(date + ' ' + startTime + ' -0700', 'MMMM DD hh:mma ZZ').format();
-                var end = moment(date + ' ' + endTime + ' -0700', 'MMMM DD hh:mma ZZ').format();
+                var start = moment(date + ' ' + startTime + ' ' + timeOffset, 'MMMM DD hh:mma ZZ').zone(timeOffset).format();
+                var end = moment(date + ' ' + endTime + ' ' + timeOffset, 'MMMM DD hh:mma ZZ').zone(timeOffset).format();
 
                 result.push({
                     name: name,
@@ -3526,7 +3528,7 @@ function renderComment(elem) {
 
 },{"domelementtype":30,"entities":31}],30:[function(require,module,exports){
 module.exports=require(28)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/node_modules/domelementtype/index.js":28}],31:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/node_modules/domelementtype/index.js":28}],31:[function(require,module,exports){
 var encode = require("./lib/encode.js"),
     decode = require("./lib/decode.js");
 
@@ -5296,7 +5298,7 @@ module.exports = {
 
 },{"./CollectingHandler.js":39,"./FeedHandler.js":40,"./Parser.js":41,"./ProxyHandler.js":42,"./Stream.js":43,"./Tokenizer.js":44,"./WritableStream.js":45,"domelementtype":47,"domhandler":48,"domutils":49}],47:[function(require,module,exports){
 module.exports=require(28)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/node_modules/domelementtype/index.js":28}],48:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/node_modules/domelementtype/index.js":28}],48:[function(require,module,exports){
 var ElementType = require("domelementtype");
 
 var re_whitespace = /\s+/g;
@@ -5511,7 +5513,7 @@ module.exports = DomHandler;
 
 },{"domelementtype":47}],49:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"./lib/helpers":50,"./lib/legacy":51,"./lib/manipulation":52,"./lib/querying":53,"./lib/stringify":54,"./lib/traversal":55,"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/index.js":21}],50:[function(require,module,exports){
+},{"./lib/helpers":50,"./lib/legacy":51,"./lib/manipulation":52,"./lib/querying":53,"./lib/stringify":54,"./lib/traversal":55,"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/index.js":21}],50:[function(require,module,exports){
 // removeSubsets
 // Given an array of nodes, remove any member that is contained by another.
 exports.removeSubsets = function(nodes) {
@@ -5656,25 +5658,25 @@ exports.uniqueSort = function(nodes) {
 
 },{}],51:[function(require,module,exports){
 module.exports=require(23)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/legacy.js":23,"domelementtype":47}],52:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/legacy.js":23,"domelementtype":47}],52:[function(require,module,exports){
 module.exports=require(24)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/manipulation.js":24}],53:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/manipulation.js":24}],53:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/querying.js":25,"domelementtype":47}],54:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/querying.js":25,"domelementtype":47}],54:[function(require,module,exports){
 module.exports=require(26)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/stringify.js":26,"domelementtype":47}],55:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/stringify.js":26,"domelementtype":47}],55:[function(require,module,exports){
 module.exports=require(27)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/traversal.js":27}],56:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/CSSselect/node_modules/domutils/lib/traversal.js":27}],56:[function(require,module,exports){
 module.exports=require(33)
-},{"../maps/decode.json":57,"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/lib/decode_codepoint.js":33}],57:[function(require,module,exports){
+},{"../maps/decode.json":57,"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/lib/decode_codepoint.js":33}],57:[function(require,module,exports){
 module.exports=require(35)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/decode.json":35}],58:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/decode.json":35}],58:[function(require,module,exports){
 module.exports=require(36)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/entities.json":36}],59:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/entities.json":36}],59:[function(require,module,exports){
 module.exports=require(37)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/legacy.json":37}],60:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/legacy.json":37}],60:[function(require,module,exports){
 module.exports=require(38)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/xml.json":38}],61:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/entities/maps/xml.json":38}],61:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -20932,9 +20934,9 @@ var isArray = Array.isArray || function (xs) {
 
 },{}],87:[function(require,module,exports){
 module.exports=require(67)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/inherits/inherits_browser.js":67}],88:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/inherits/inherits_browser.js":67}],88:[function(require,module,exports){
 module.exports=require(68)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/isarray/index.js":68}],89:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/isarray/index.js":68}],89:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -21945,9 +21947,9 @@ module.exports = require("./lib/_stream_duplex.js")
 
 },{"./lib/_stream_duplex.js":96}],96:[function(require,module,exports){
 arguments[4][61][0].apply(exports,arguments)
-},{"./_stream_readable":98,"./_stream_writable":100,"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_duplex.js":61,"_process":90,"core-util-is":101,"inherits":87}],97:[function(require,module,exports){
+},{"./_stream_readable":98,"./_stream_writable":100,"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_duplex.js":61,"_process":90,"core-util-is":101,"inherits":87}],97:[function(require,module,exports){
 arguments[4][62][0].apply(exports,arguments)
-},{"./_stream_transform":99,"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_passthrough.js":62,"core-util-is":101,"inherits":87}],98:[function(require,module,exports){
+},{"./_stream_transform":99,"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_passthrough.js":62,"core-util-is":101,"inherits":87}],98:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -23537,7 +23539,7 @@ function endWritable(stream, state, cb) {
 }).call(this,require('_process'))
 },{"./_stream_duplex":96,"_process":90,"buffer":78,"core-util-is":101,"inherits":87,"stream":106}],101:[function(require,module,exports){
 module.exports=require(66)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js":66,"buffer":78}],102:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js":66,"buffer":78}],102:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
 },{"./lib/_stream_passthrough.js":97}],103:[function(require,module,exports){
@@ -23685,7 +23687,7 @@ Stream.prototype.pipe = function(dest, options) {
 
 },{"events":82,"inherits":87,"readable-stream/duplex.js":95,"readable-stream/passthrough.js":102,"readable-stream/readable.js":103,"readable-stream/transform.js":104,"readable-stream/writable.js":105}],107:[function(require,module,exports){
 module.exports=require(69)
-},{"/Users/richtrott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/string_decoder/index.js":69,"buffer":78}],108:[function(require,module,exports){
+},{"/Users/trott/devconf-calendar/node_modules/amalgamatic-h5dcsched/node_modules/cheerio/node_modules/htmlparser2/node_modules/readable-stream/node_modules/string_decoder/index.js":69,"buffer":78}],108:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a

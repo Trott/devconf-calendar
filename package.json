@@ -17,7 +17,7 @@
   "homepage": "https://github.com/Trott/devconf-calendar",
   "dependencies": {
     "amalgamatic": "^6.0.2",
-    "amalgamatic-h5dcsched": "^1.0.2"
+    "amalgamatic-h5dcsched": "^1.0.3"
   },
   "devDependencies": {
     "jshint": "^2.5.6"
